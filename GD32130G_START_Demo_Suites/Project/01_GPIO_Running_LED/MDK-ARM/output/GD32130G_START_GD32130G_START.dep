@@ -822,8 +822,8 @@ I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd
 I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_tsi.h)(0x61C18C76)
 F (..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Source\ARM\startup_gd32f1x0.s)(0x61C18C76)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_GD32130G_START-IC:\Users\hm\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\hm\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Include--pd "__UVISION_VERSION SETA 528" --pd "_RTE_ SETA 1" --pd "GD32F1x0 SETA 1" --pd "GD32F130_150 SETA 1" --pd "USE_STDPERIPH_DRIVER SETA 1"--list .\list\startup_gd32f1x0.lst --xref -o .\output\startup_gd32f1x0.o --depend .\output\startup_gd32f1x0.d)
 F (..\readme.txt)(0x61C18C5B)()
-F (..\HARDWARE\spi.c)(0x65484ADC)(-c --cpu Cortex-M3 -g -O0 -Otime --apcs=interwork --split_sections -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include -I ..\..\01_GPIO_Running_LED -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS -I ..\..\..\Utilities -I ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include -I ..\HARDWARE-I.\RTE\_GD32130G_START-IC:\Users\hm\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\hm\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DGD32F1x0 -DGD32F130_150 -DUSE_STDPERIPH_DRIVER-o .\output\spi.o --omf_browse .\output\spi.crf --depend .\output\spi.d)
-I (..\HARDWARE\spi.h)(0x6548A0ED)
+F (..\HARDWARE\spi.c)(0x6549F9EE)(-c --cpu Cortex-M3 -g -O0 -Otime --apcs=interwork --split_sections -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include -I ..\..\01_GPIO_Running_LED -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS -I ..\..\..\Utilities -I ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include -I ..\HARDWARE-I.\RTE\_GD32130G_START-IC:\Users\hm\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\hm\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DGD32F1x0 -DGD32F130_150 -DUSE_STDPERIPH_DRIVER-o .\output\spi.o --omf_browse .\output\spi.crf --depend .\output\spi.d)
+I (..\HARDWARE\spi.h)(0x6549FA99)
 I (..\..\01_GPIO_Running_LED\systick.h)(0x61C18C5B)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CEB79E2)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
@@ -855,6 +855,7 @@ I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd
 I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_wwdgt.h)(0x61C18C76)
 I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_misc.h)(0x61C18C76)
 I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_tsi.h)(0x61C18C76)
+I (..\HARDWARE\delay.h)(0x6549F63D)
 F (..\HARDWARE\led.c)(0x6548A0D1)(-c --cpu Cortex-M3 -g -O0 -Otime --apcs=interwork --split_sections -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include -I ..\..\01_GPIO_Running_LED -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS -I ..\..\..\Utilities -I ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include -I ..\HARDWARE-I.\RTE\_GD32130G_START-IC:\Users\hm\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\hm\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DGD32F1x0 -DGD32F130_150 -DUSE_STDPERIPH_DRIVER-o .\output\led.o --omf_browse .\output\led.crf --depend .\output\led.d)
 I (..\HARDWARE\led.h)(0x6544D4E7)
 I (..\..\..\Utilities\gd32f130g_start.h)(0x6544D4A0)
@@ -890,3 +891,34 @@ I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd
 F (..\HARDWARE\pid.c)(0x65489FB0)(-c --cpu Cortex-M3 -g -O0 -Otime --apcs=interwork --split_sections -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include -I ..\..\01_GPIO_Running_LED -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS -I ..\..\..\Utilities -I ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include -I ..\HARDWARE-I.\RTE\_GD32130G_START-IC:\Users\hm\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\hm\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DGD32F1x0 -DGD32F130_150 -DUSE_STDPERIPH_DRIVER-o .\output\pid.o --omf_browse .\output\pid.crf --depend .\output\pid.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
 I (..\HARDWARE\pid.h)(0x65484B9F)
+F (..\HARDWARE\delay.c)(0x6549F9AF)(-c --cpu Cortex-M3 -g -O0 -Otime --apcs=interwork --split_sections -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include -I ..\..\01_GPIO_Running_LED -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS -I ..\..\..\Utilities -I ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include -I ..\HARDWARE-I.\RTE\_GD32130G_START-IC:\Users\hm\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include-IC:\Users\hm\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DGD32F1x0 -DGD32F130_150 -DUSE_STDPERIPH_DRIVER-o .\output\delay.o --omf_browse .\output\delay.crf --depend .\output\delay.d)
+I (..\HARDWARE\delay.h)(0x6549F63D)
+I (..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include\gd32f1x0.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\core_cm3.h)(0x61C18C76)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CEB79E2)
+I (..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\core_cmInstr.h)(0x61BAAA83)
+I (..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\core_cmFunc.h)(0x61BAAA83)
+I (..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include\system_gd32f1x0.h)(0x61C18C76)
+I (..\..\01_GPIO_Running_LED\gd32f1x0_libopt.h)(0x61C18C5B)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_adc.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_cec.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_crc.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_cmp.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_dac.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_dbg.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_dma.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_exti.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_fmc.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_gpio.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_syscfg.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_i2c.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_fwdgt.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_pmu.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_rcu.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_rtc.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_spi.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_timer.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_usart.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_wwdgt.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_misc.h)(0x61C18C76)
+I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_tsi.h)(0x61C18C76)

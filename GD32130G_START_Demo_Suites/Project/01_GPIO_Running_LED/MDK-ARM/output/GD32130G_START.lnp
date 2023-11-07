@@ -34,6 +34,7 @@
 ".\output\spi.o"
 ".\output\led.o"
 ".\output\pid.o"
+".\output\delay.o"
 --strict --scatter ".\output\GD32130G_START.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

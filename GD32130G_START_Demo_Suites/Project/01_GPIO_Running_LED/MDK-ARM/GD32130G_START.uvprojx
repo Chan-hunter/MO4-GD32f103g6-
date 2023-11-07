@@ -592,6 +592,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\pid.c</FilePath>
             </File>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\delay.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
