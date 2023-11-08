@@ -32,3 +32,4 @@
 .\output\main.o: ..\systick.h
 .\output\main.o: ..\..\..\Utilities\gd32f130g_start.h
 .\output\main.o: ..\HARDWARE\led.h
+.\output\main.o: ..\HARDWARE\delay.h
