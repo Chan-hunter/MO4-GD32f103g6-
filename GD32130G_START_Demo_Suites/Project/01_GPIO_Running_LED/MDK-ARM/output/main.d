@@ -32,4 +32,12 @@
 .\output\main.o: ..\systick.h
 .\output\main.o: ..\..\..\Utilities\gd32f130g_start.h
 .\output\main.o: ..\HARDWARE\led.h
+.\output\main.o: ..\HARDWARE\RTC6705.h
+.\output\main.o: ..\HARDWARE\spi.h
+.\output\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\output\main.o: ..\HARDWARE\delay.h
+.\output\main.o: ..\HARDWARE\pwm.h
+.\output\main.o: ..\HARDWARE\adc.h
+.\output\main.o: ..\HARDWARE\filter.h
+.\output\main.o: ..\HARDWARE\pid.h
+.\output\main.o: ..\main.h

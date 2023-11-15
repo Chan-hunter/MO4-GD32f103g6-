@@ -2,23 +2,23 @@
 #include "pid.h"
 
 // PID参数
-float Kp = 1.0; // 比例增益
-float Ki = 0.1; // 积分增益
-float Kd = 0.01; // 微分增益   
+//float Kp = 1.5; // 比例增益
+//float Ki = 0.08; // 积分增益
+//float Kd = 1.0; // 微分增益   
 
 // 目标值
-float setpoint = 50.0;
+//float setpoint = 50.0;
 
 // 当前值
-float current_value = 0.0;
+//float current_value = 0.0;
 
 // 积分项和微分项的累积误差
 float integral = 0.0;
 float prev_error = 0.0;
-
+float derivative;
 // PID控制函数
-float pid_control(float current, float setpoint) {
-    float derivative;
+float pid_control(float current, float setpoint, float Kp,float Ki,float Kd) {
+    
     float output;
 
     // 计算误差
@@ -27,7 +27,7 @@ float pid_control(float current, float setpoint) {
     // 计算积分项
     integral += error;
 
-    // 讘算微分项
+    // 计算微分项
     derivative = error - prev_error;
 
     // 计算PID输出

@@ -39,6 +39,12 @@ OF SUCH DAMAGE.
 #include "systick.h"
 #include "gd32f130g_start.h"
 #include "led.h"
+#include "RTC6705.h"
+#include "pwm.h"
+#include "adc.h"
+#include "filter.h"
+#include "pid.h"
+#include "main.h"
 
 /*!
     \brief      main function
@@ -46,6 +52,9 @@ OF SUCH DAMAGE.
     \param[out] none
     \retval     none
 */
+float Vpd=0,dB=20,set_Vpd;
+int dir=1,led0pwmval=0;
+float set_pwm;    
 int main(void)
 {
     /* enable the led clock */
@@ -55,17 +64,37 @@ int main(void)
 //    gpio_output_options_set(GPIOA, GPIO_OTYPE_PP, GPIO_OTYPE_PP,  GPIO_PIN_1);
 //    gpio_bit_reset(GPIOA,  GPIO_PIN_1);
     LED_Init();
+    SPI_Init();
+//    BIAS_Init();
+    PA_Init();
+    RTC6705_WriteREG(0x0F,0000);
+    RTC6705_WriteREG(0x00,400);
+    SetFreq(5800);
+    Vpd_ADC_Init();
+    TIM1_PWM_Init();
+    TIM2_PWM_Init();
     /* setup SysTick Timer for 1ms interrupts  */
     systick_config();
-    
+    set_Vpd=1420;  //14dbm:625 20dbm:1005  24dbm:1420    26dbm:1680
     while(1){
         /* turn on LED1 */
-        gpio_bit_set(GPIOA, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4);
+//        gpio_bit_set(GPIOA, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4);
         /* insert 200 ms delay */
-//        delay_1ms(200);
-//        /* turn off LED1 */ 
-//        gpio_bit_reset(GPIOA, GPIO_PIN_1);
-//        /* insert 200 ms delay */
-//        delay_1ms(200);
+        
+//        if(dir)led0pwmval++;
+//		else led0pwmval--;
+// 		if(led0pwmval>300)dir=0;
+//		if(led0pwmval==0)dir=1;	
+//        timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_3,500);
+//        Delay(0xfff);
+        
+        Vpd=(LimitFilter((get_adc_ch(1)),4096,0,200));//LimitFilter  filter  *3.3/4096
+        set_pwm = Constrain(pid_control(Vpd,set_Vpd,1.4+(set_Vpd/1000),0.07,1),1300,800);
+        timer_channel_output_pulse_value_config(TIMER2,TIMER_CH_1,set_pwm);
+//         Delay(0xff);
+//        gpio_bit_set(BIAS_GPIOx, BIAS_GPIO);
+//        Delay(0xffF);
+//        gpio_bit_reset(BIAS_GPIOx, BIAS_GPIO);
+//        Delay(0xf);
     }
 }
