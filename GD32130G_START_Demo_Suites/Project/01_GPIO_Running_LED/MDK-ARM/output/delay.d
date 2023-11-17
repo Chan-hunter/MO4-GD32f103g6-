@@ -1,5 +1,5 @@
-.\output\delay.o: ..\HARDWARE\delay.c
-.\output\delay.o: ..\HARDWARE\delay.h
+.\output\delay.o: ..\SOFTWARE\delay.c
+.\output\delay.o: ..\SOFTWARE\delay.h
 .\output\delay.o: ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include\gd32f1x0.h
 .\output\delay.o: ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\core_cm3.h
 .\output\delay.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h

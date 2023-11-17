@@ -33,4 +33,4 @@
 .\output\rtc6705.o: ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_wwdgt.h
 .\output\rtc6705.o: ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_misc.h
 .\output\rtc6705.o: ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_tsi.h
-.\output\rtc6705.o: ..\HARDWARE\delay.h
+.\output\rtc6705.o: ..\SOFTWARE\delay.h

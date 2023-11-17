@@ -45,6 +45,8 @@ OF SUCH DAMAGE.
 #include "filter.h"
 #include "pid.h"
 #include "main.h"
+#include "uart.h"
+#include "SmartAudio.h"
 
 /*!
     \brief      main function
@@ -55,6 +57,10 @@ OF SUCH DAMAGE.
 float Vpd=0,dB=20,set_Vpd;
 int dir=1,led0pwmval=0;
 float set_pwm;    
+
+
+
+
 int main(void)
 {
     /* enable the led clock */
@@ -69,13 +75,15 @@ int main(void)
     PA_Init();
     RTC6705_WriteREG(0x0F,0000);
     RTC6705_WriteREG(0x00,400);
-    SetFreq(5800);
+    SetFreq(5600);
     Vpd_ADC_Init();
     TIM1_PWM_Init();
     TIM2_PWM_Init();
+    UART0_Init();
     /* setup SysTick Timer for 1ms interrupts  */
     systick_config();
-    set_Vpd=1420;  //14dbm:625 20dbm:1005  24dbm:1420    26dbm:1680
+    set_Vpd=1005;  //14dbm:610 20dbm:1005  24dbm:1420    26dbm:1680
+
     while(1){
         /* turn on LED1 */
 //        gpio_bit_set(GPIOA, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4);
@@ -89,8 +97,23 @@ int main(void)
 //        Delay(0xfff);
         
         Vpd=(LimitFilter((get_adc_ch(1)),4096,0,200));//LimitFilter  filter  *3.3/4096
-        set_pwm = Constrain(pid_control(Vpd,set_Vpd,1.4+(set_Vpd/1000),0.07,1),1300,800);
+        set_pwm = Constrain(pid_control(Vpd,set_Vpd,1.4+(set_Vpd/1000),0.07,0.5),1300,800);
         timer_channel_output_pulse_value_config(TIMER2,TIMER_CH_1,set_pwm);
+       
+
+//       usart0_data_receive();
+        
+//       while(Length--)
+//    {
+//        /* wait until end of transmit */
+//        while(RESET == usart_flag_get(USART0, USART_FLAG_TBE));
+//        usart_data_transmit(USART0, buff[i++]);
+//        Delay(0xff);
+
+//    }
+
+            
+
 //         Delay(0xff);
 //        gpio_bit_set(BIAS_GPIOx, BIAS_GPIO);
 //        Delay(0xffF);

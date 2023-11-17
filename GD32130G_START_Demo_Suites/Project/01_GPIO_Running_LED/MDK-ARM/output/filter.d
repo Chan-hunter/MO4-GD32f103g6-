@@ -1,5 +1,5 @@
-.\output\filter.o: ..\HARDWARE\filter.c
-.\output\filter.o: ..\HARDWARE\filter.h
+.\output\filter.o: ..\SOFTWARE\filter.c
+.\output\filter.o: ..\SOFTWARE\filter.h
 .\output\filter.o: ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include\gd32f1x0.h
 .\output\filter.o: ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\core_cm3.h
 .\output\filter.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h

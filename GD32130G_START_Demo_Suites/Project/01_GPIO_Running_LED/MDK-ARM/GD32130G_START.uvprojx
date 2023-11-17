@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include;..\..\01_GPIO_Running_LED;..\..\..\..\GD32F1x0_Firmware_Library\CMSIS;..\..\..\Utilities;..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include;..\HARDWARE</IncludePath>
+              <IncludePath>..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include;..\..\01_GPIO_Running_LED;..\..\..\..\GD32F1x0_Firmware_Library\CMSIS;..\..\..\Utilities;..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include;..\HARDWARE;..\SOFTWARE</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -593,11 +593,6 @@
               <FilePath>..\HARDWARE\pid.c</FilePath>
             </File>
             <File>
-              <FileName>delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\delay.c</FilePath>
-            </File>
-            <File>
               <FileName>pwm.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\pwm.c</FilePath>
@@ -613,9 +608,29 @@
               <FilePath>..\HARDWARE\adc.c</FilePath>
             </File>
             <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\uart.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>SOFTWARE</GroupName>
+          <Files>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\SOFTWARE\delay.c</FilePath>
+            </File>
+            <File>
               <FileName>filter.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\filter.c</FilePath>
+              <FilePath>..\SOFTWARE\filter.c</FilePath>
+            </File>
+            <File>
+              <FileName>SmartAudio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\SOFTWARE\SmartAudio.c</FilePath>
             </File>
           </Files>
         </Group>

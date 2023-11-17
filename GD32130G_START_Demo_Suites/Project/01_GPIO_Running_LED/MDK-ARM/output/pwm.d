@@ -35,4 +35,4 @@
 .\output\pwm.o: ..\HARDWARE\spi.h
 .\output\pwm.o: ..\..\01_GPIO_Running_LED\systick.h
 .\output\pwm.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\output\pwm.o: ..\HARDWARE\delay.h
+.\output\pwm.o: ..\SOFTWARE\delay.h

@@ -34,11 +34,13 @@
 ".\output\spi.o"
 ".\output\led.o"
 ".\output\pid.o"
-".\output\delay.o"
 ".\output\pwm.o"
 ".\output\rtc6705.o"
 ".\output\adc.o"
+".\output\uart.o"
+".\output\delay.o"
 ".\output\filter.o"
+".\output\smartaudio.o"
 --strict --scatter ".\output\GD32130G_START.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

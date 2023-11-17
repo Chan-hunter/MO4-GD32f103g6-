@@ -561,7 +561,7 @@ ARM Macro Assembler    Page 9
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\output\startup_gd32f1x0.d -o.\output\startup_gd32f1x0.o -I.\RTE\
-_GD32130G_START -IC:\Users\hm\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Cor
+_GD32130G_START -IC:\Users\hm\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Cor
 e\Include -IC:\Users\hm\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\D
 evice\Include --predefine="__UVISION_VERSION SETA 528" --predefine="_RTE_ SETA 
 1" --predefine="GD32F1x0 SETA 1" --predefine="GD32F130_150 SETA 1" --predefine=
