@@ -6,9 +6,8 @@
 __IO uint8_t txcount0 = 0; 
 uint16_t rxcount0 = 0; 
 
-//uint8_t transmitter_buffer0[] = "\n\ra usart half-duplex test example!\n\r";
-
-uint8_t receiver_buffer0[100];
+uint8_t transmitter_buffer0[20];
+uint8_t receiver_buffer0[20];
 
 ErrStatus memory_compare(uint8_t* src, uint8_t* dst, uint16_t length) ;
 
@@ -76,6 +75,38 @@ void USART0_StopReceive(void)
     usart_receive_config(USART0, USART_RECEIVE_DISABLE);    //停止接收
 }
 
+void USART0_RestoreReceive(void)
+{
+        /*开启接收行为*/
+    usart_interrupt_enable(USART0, USART_INT_IDLE);        //开启空闲中断
+    usart_interrupt_enable(USART0, USART_INT_RBNE);        //开启接收器非空中断
+    usart_receive_config(USART0, USART_RECEIVE_ENABLE);    //开启接收
+    usart_transmit_config(USART0, USART_TRANSMIT_DISABLE); //关闭发送
+}
+
+void usart0_data_send(uint8_t* Buff, uint16_t Length)
+{
+     u16 i=0;   
+     u16 size;
+    size = Length;
+//     while(size)
+//     {
+//       while(RESET == usart_flag_get(USART0, USART_FLAG_RBNE));
+//       usart_data_transmit(USART0,transmitter_buffer0[i++]);
+//       size--;
+//    }
+         for(;i<=size;i++)
+        {
+            usart_data_transmit(USART0,Buff[i]);
+            while(RESET == usart_flag_get(USART0, USART_FLAG_TBE));
+            
+//            Delay(0xf);
+        }
+        
+       
+        
+}
+
 void usart0_data_receive(void)
 {
 //     while(transfersize0--)
@@ -85,6 +116,8 @@ void usart0_data_receive(void)
         receiver_buffer0[rxcount0++] = usart_data_receive(USART0);
 //     }
 }
+
+
 
  void USART0_IRQHandler(void)
 {
@@ -112,12 +145,23 @@ void usart0_data_receive(void)
         usart_data_receive(USART0);
         usart_interrupt_flag_clear(USART0, USART_INT_FLAG_IDLE);    //清理空闲中断标志位
 //        LED_Open(LEDColor_Blue);                                    //蓝灯亮说明进入IDLE中断了
+        SmartAudio_VTX_VerifyRx(receiver_buffer0,rxcount0);
+        Delay(0xff);
+        if( SmartAudio_VTX_VerifyRx(receiver_buffer0,rxcount0) == 1)
+        {
+            SmartAudio_VTX_PckTx(transmitter_buffer0);
+            length = SmartAudio.length;
+        }
+        
         
         if(rxcount0 > 0)
         {
             USART0_StopReceive();           //停止接收
+            
+            set_flag = 1;
 //            USART0_BuffCtrl.FlagRC = 1;     //接收完成的标志置1
 //            LED_Open(LEDColor_Red);         //红灯亮说明收到数据了
+            rxcount0 = 0;
         }
 	}
 }

@@ -37,7 +37,6 @@ OF SUCH DAMAGE.
 
 #include "gd32f1x0.h"
 #include "systick.h"
-#include "gd32f130g_start.h"
 #include "led.h"
 #include "RTC6705.h"
 #include "pwm.h"
@@ -48,6 +47,7 @@ OF SUCH DAMAGE.
 #include "uart.h"
 #include "SmartAudio.h"
 
+
 /*!
     \brief      main function
     \param[in]  none
@@ -57,8 +57,8 @@ OF SUCH DAMAGE.
 float Vpd=0,dB=20,set_Vpd;
 int dir=1,led0pwmval=0;
 float set_pwm;    
-
-
+u8 set_flag ;
+u16 length;
 
 
 int main(void)
@@ -82,43 +82,25 @@ int main(void)
     UART0_Init();
     /* setup SysTick Timer for 1ms interrupts  */
     systick_config();
-    set_Vpd=1005;  //14dbm:610 20dbm:1005  24dbm:1420    26dbm:1680
+    set_Vpd=530;  //14dbm:610 20dbm:1005  24dbm:1420    26dbm:1680
 
     while(1){
-        /* turn on LED1 */
-//        gpio_bit_set(GPIOA, GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4);
-        /* insert 200 ms delay */
         
-//        if(dir)led0pwmval++;
-//		else led0pwmval--;
-// 		if(led0pwmval>300)dir=0;
-//		if(led0pwmval==0)dir=1;	
-//        timer_channel_output_pulse_value_config(TIMER1,TIMER_CH_3,500);
-//        Delay(0xfff);
-        
+        /*控制功率*/
+        set_Vpd=530;
         Vpd=(LimitFilter((get_adc_ch(1)),4096,0,200));//LimitFilter  filter  *3.3/4096
         set_pwm = Constrain(pid_control(Vpd,set_Vpd,1.4+(set_Vpd/1000),0.07,0.5),1300,800);
         timer_channel_output_pulse_value_config(TIMER2,TIMER_CH_1,set_pwm);
-       
-
-        SmartAudio_VTX_VerifyRx(receiver_buffer0,rxcount0);
-//       usart0_data_receive();
         
-//       while(Length--)
-//    {
-//        /* wait until end of transmit */
-//        while(RESET == usart_flag_get(USART0, USART_FLAG_TBE));
-//        usart_data_transmit(USART0, buff[i++]);
-//        Delay(0xff);
-
-//    }
-
-            
-
-//         Delay(0xff);
-//        gpio_bit_set(BIAS_GPIOx, BIAS_GPIO);
-//        Delay(0xffF);
-//        gpio_bit_reset(BIAS_GPIOx, BIAS_GPIO);
-//        Delay(0xf);
+        /* SmartAudio通信 */
+      if(set_flag == 1)
+      {
+        usart_transmit_config(USART0, USART_TRANSMIT_ENABLE); //开启发送
+        usart0_data_send(transmitter_buffer0,SmartAudio.length);
+        memset(receiver_buffer0,0,20);
+        USART0_RestoreReceive();
+        set_flag = 0;
+      }
+        
     }
 }

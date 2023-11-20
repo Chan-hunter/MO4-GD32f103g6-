@@ -31,4 +31,6 @@
 .\output\uart.o: ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_wwdgt.h
 .\output\uart.o: ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_misc.h
 .\output\uart.o: ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_tsi.h
+.\output\uart.o: ..\SOFTWARE\SmartAudio.h
+.\output\uart.o: ..\..\01_GPIO_Running_LED\main.h
 .\output\uart.o: ..\SOFTWARE\delay.h

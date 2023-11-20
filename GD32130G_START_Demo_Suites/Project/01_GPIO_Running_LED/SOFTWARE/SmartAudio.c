@@ -38,8 +38,9 @@ return crc;
 
 
 
-uint8_t SmartAudio_VTX_PckTx(uint8_t *Buff) //仅用V2版本
+void SmartAudio_VTX_PckTx(uint8_t *Buff) //仅用V2版本
 {
+    
     Buff[0] = 0x00;             //唤醒码
     Buff[1] = 0xAA;             //同步码
     Buff[2] = 0x55;             //同步码
@@ -56,6 +57,7 @@ uint8_t SmartAudio_VTX_PckTx(uint8_t *Buff) //仅用V2版本
             Buff[9] = SmartAudio.Freq;
             Buff[10] = crc8(&Buff[3], 7);
             Buff[11] = 0x00;
+            SmartAudio.length = 12;
             break;
         
         case Set_Power_cmd:
@@ -66,6 +68,7 @@ uint8_t SmartAudio_VTX_PckTx(uint8_t *Buff) //仅用V2版本
             Buff[7] = 0x1;
             Buff[8] = crc8(&Buff[3],5);
             Buff[9] = 0x00;
+            SmartAudio.length = 10;
             break;
         
         case Set_Channel_cmd:
@@ -75,6 +78,7 @@ uint8_t SmartAudio_VTX_PckTx(uint8_t *Buff) //仅用V2版本
             Buff[6] = 0x01;
             Buff[7] = crc8(&Buff[3], 4);
             Buff[8] = 0x00;
+            SmartAudio.length = 9;
             break;
         
         case Set_Frequency_cmd:
@@ -85,6 +89,7 @@ uint8_t SmartAudio_VTX_PckTx(uint8_t *Buff) //仅用V2版本
             Buff[7] = 0x01;
             Buff[8] = crc8(&Buff[3], 5);
             Buff[9] = 0x00;
+            SmartAudio.length = 10;
             break;
         
         case Set_Mode_cmd:
@@ -94,14 +99,15 @@ uint8_t SmartAudio_VTX_PckTx(uint8_t *Buff) //仅用V2版本
             Buff[6] = 0x01;
             Buff[7] = crc8(&Buff[3], 4);
             Buff[8] = 0x00;
+            SmartAudio.length = 9;
             break;
         
     }
+      
 }
 
 
 
-char  flag;
 uint8_t SmartAudio_VTX_VerifyRx(uint8_t *Buff, uint8_t BuffLenth)
 {
     uint8_t CRC_calculated_value;                       //计算得出的CRC值

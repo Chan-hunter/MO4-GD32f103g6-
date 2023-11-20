@@ -30,7 +30,6 @@
 .\output\main.o: ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_misc.h
 .\output\main.o: ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_tsi.h
 .\output\main.o: ..\systick.h
-.\output\main.o: ..\..\..\Utilities\gd32f130g_start.h
 .\output\main.o: ..\HARDWARE\led.h
 .\output\main.o: ..\HARDWARE\RTC6705.h
 .\output\main.o: ..\HARDWARE\spi.h
@@ -38,6 +37,7 @@
 .\output\main.o: ..\SOFTWARE\delay.h
 .\output\main.o: ..\HARDWARE\pwm.h
 .\output\main.o: ..\HARDWARE\adc.h
+.\output\main.o: ..\..\..\Utilities\gd32f130g_start.h
 .\output\main.o: ..\SOFTWARE\filter.h
 .\output\main.o: ..\HARDWARE\pid.h
 .\output\main.o: ..\main.h
