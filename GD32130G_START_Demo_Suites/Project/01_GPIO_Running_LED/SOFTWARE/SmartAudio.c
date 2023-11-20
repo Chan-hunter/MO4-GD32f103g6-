@@ -38,50 +38,111 @@ return crc;
 
 
 
-uint8_t SmartAudio_VTX_PckTx(uint8_t *Buff)
+uint8_t SmartAudio_VTX_PckTx(uint8_t *Buff) //仅用V2版本
 {
-
+    Buff[0] = 0x00;             //唤醒码
+    Buff[1] = 0xAA;             //同步码
+    Buff[2] = 0x55;             //同步码
+    
+    switch (SmartAudio.Cmd)
+    {
+        case Get_Settings_cmd: 
+            Buff[3] = 0x09;
+            Buff[4] = 0x06;
+            Buff[5] = SmartAudio.Channel;
+            Buff[6] = SmartAudio.Power;
+            Buff[7] = 0x1A;
+            Buff[8] = (SmartAudio.Freq >> 8);
+            Buff[9] = SmartAudio.Freq;
+            Buff[10] = crc8(&Buff[3], 7);
+            Buff[11] = 0x00;
+            break;
+        
+        case Set_Power_cmd:
+            Buff[3] = 0x02;
+            Buff[4] = 0x03;
+            Buff[5] = SmartAudio.Channel;
+            Buff[6] = SmartAudio.Power;
+            Buff[7] = 0x1;
+            Buff[8] = crc8(&Buff[3],5);
+            Buff[9] = 0x00;
+            break;
+        
+        case Set_Channel_cmd:
+            Buff[3] = 0x03;
+            Buff[4] = 0x03;
+            Buff[5] = SmartAudio.Channel;
+            Buff[6] = 0x01;
+            Buff[7] = crc8(&Buff[3], 4);
+            Buff[8] = 0x00;
+            break;
+        
+        case Set_Frequency_cmd:
+            Buff[3] = 0x04;
+            Buff[4] = 0x04;
+            Buff[5] = (SmartAudio.Freq >> 8);
+            Buff[6] = SmartAudio.Freq;
+            Buff[7] = 0x01;
+            Buff[8] = crc8(&Buff[3], 5);
+            Buff[9] = 0x00;
+            break;
+        
+        case Set_Mode_cmd:
+            Buff[3] = 0x05;
+            Buff[4] = 0x03;
+            Buff[5] = SmartAudio.Mode;
+            Buff[6] = 0x01;
+            Buff[7] = crc8(&Buff[3], 4);
+            Buff[8] = 0x00;
+            break;
+        
+    }
 }
 
 
 
-
+char  flag;
 uint8_t SmartAudio_VTX_VerifyRx(uint8_t *Buff, uint8_t BuffLenth)
 {
     uint8_t CRC_calculated_value;                       //计算得出的CRC值
     
-    if(Buff[0] == 0xAA && Buff[1] == 0x55)
+    if(Buff[1] == 0xAA && Buff[2] == 0x55)
     {    
-        CRC_calculated_value = crc8(&Buff[0], BuffLenth-1);
+        CRC_calculated_value = crc8(&Buff[1], BuffLenth-1);
         if(CRC_calculated_value == Buff[BuffLenth])
         {
             switch(Buff[3])
             {
                 case Get_Settings_cmd:
+                    SmartAudio.Cmd = Get_Settings_cmd;
                     break;
                 
                  case Set_Power_cmd:
-                     SmartAudio.Power = Buff[5];
+                    SmartAudio.Power = Buff[5];
+                    SmartAudio.Cmd  = Set_Power_cmd;
                     break;
                  
                 case Set_Channel_cmd:
                     SmartAudio.Channel =  Buff[5];
+                    SmartAudio.Cmd = Set_Channel_cmd;
                     break;
                 
                 case Set_Frequency_cmd:
                     SmartAudio.Freq = (uint16_t)Buff[5] << 8;
                     SmartAudio.Freq |= (uint16_t)Buff[6];
+                    SmartAudio.Cmd = Set_Frequency_cmd;
                     break;
                 
                 case Set_Mode_cmd:
                     SmartAudio.Mode = Buff[5];
+                    SmartAudio.Cmd = Set_Mode_cmd;
                     break;
             }
             return 1;
         }
         else return 0;
-
     }
+    else return 0;
    
 }
 

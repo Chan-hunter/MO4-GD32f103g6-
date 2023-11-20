@@ -101,6 +101,7 @@ int main(void)
         timer_channel_output_pulse_value_config(TIMER2,TIMER_CH_1,set_pwm);
        
 
+        SmartAudio_VTX_VerifyRx(receiver_buffer0,rxcount0);
 //       usart0_data_receive();
         
 //       while(Length--)

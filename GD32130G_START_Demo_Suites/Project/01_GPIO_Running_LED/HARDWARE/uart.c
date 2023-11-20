@@ -4,9 +4,9 @@
 
 
 __IO uint8_t txcount0 = 0; 
-__IO uint16_t rxcount0 = 0; 
+uint16_t rxcount0 = 0; 
 
-uint8_t transmitter_buffer0[] = "\n\ra usart half-duplex test example!\n\r";
+//uint8_t transmitter_buffer0[] = "\n\ra usart half-duplex test example!\n\r";
 
 uint8_t receiver_buffer0[100];
 
@@ -104,8 +104,6 @@ void usart0_data_receive(void)
 //        {
 //            USART0_BuffCtrl.RxBuff[USART_BuffSize-1] = usart_data_receive(USART0);      //溢出接收
 //        }
-        
-        
     }
     
 	/*IDLE线检测中断*/
