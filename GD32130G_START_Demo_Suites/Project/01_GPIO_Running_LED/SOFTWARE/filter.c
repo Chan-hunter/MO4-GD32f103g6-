@@ -34,7 +34,7 @@ float LimitFilter(float input,float MAX_VALUE,float MIN_VALUE,float THRESHOLD) /
             output = previous_output - THRESHOLD;
         }
         
-        if (fabs(output - previous_output) < THRESHOLD/10) flag=0;
+        if (fabs(output - previous_output) < THRESHOLD/20) flag=0;
          
     }
     

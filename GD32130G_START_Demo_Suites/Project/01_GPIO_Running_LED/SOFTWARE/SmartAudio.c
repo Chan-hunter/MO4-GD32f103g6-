@@ -1,4 +1,5 @@
 #include "SmartAudio.h"
+#include "main.h"
 
 
 
@@ -34,72 +35,175 @@ uint8_t crc8(const uint8_t * ptr, uint8_t len)
     }
 return crc;
 }
+#define POLYGEN 0xd5
+static uint8_t CRC8(const uint8_t *data, const int8_t len)
+{
+    uint8_t crc = 0; /* start with 0 so first byte can be 'xored' in */
+    uint8_t currByte;
 
+    for (int i = 0 ; i < len ; i++) {
+        currByte = data[i];
+
+        crc ^= currByte; /* XOR-in the next input byte */
+
+        for (int i = 0; i < 8; i++) {
+            if ((crc & 0x80) != 0) {
+                crc = (uint8_t)((crc << 1) ^ POLYGEN);
+            } else {
+                crc <<= 1;
+            }
+        }
+    }
+    return crc;
+}
 
 
 
 void SmartAudio_VTX_PckTx(uint8_t *Buff) //仅用V2版本
 {
     
-    Buff[0] = 0x00;             //唤醒码
-    Buff[1] = 0xAA;             //同步码
-    Buff[2] = 0x55;             //同步码
+//    Buff[0] = 0x00;             //唤醒码
+//    Buff[1] = 0xAA;             //同步码
+//    Buff[2] = 0x55;             //同步码
+//    
+//    switch (SmartAudio.Cmd)
+//    {
+//        case Get_Settings_cmd: 
+//            Buff[3] = 0x09;
+//            Buff[4] = 0x06;
+//            Buff[5] = SmartAudio.Channel;
+//            Buff[6] = SmartAudio.Power;
+//            Buff[7] = 0x1A;
+//            Buff[8] = (SmartAudio.Freq >> 8);
+//            Buff[9] = SmartAudio.Freq;
+//            Buff[10] = crc8(&Buff[3], 7);
+//            Buff[11] = 0x00;
+//            SmartAudio.length = 12; //12
+//            break;
+//        
+//        case Set_Power_cmd:
+//            Buff[3] = 0x02;
+//            Buff[4] = 0x03;
+//            Buff[5] = SmartAudio.Channel;
+//            Buff[6] = SmartAudio.Power;
+//            Buff[7] = 0x1;
+//            Buff[8] = crc8(&Buff[3],5);
+//            Buff[9] = 0x00;
+//            SmartAudio.length = 10;  //10
+//            break;
+//        
+//        case Set_Channel_cmd:
+//            Buff[3] = 0x03;
+//            Buff[4] = 0x03;
+//            Buff[5] = SmartAudio.Channel;
+//            Buff[6] = 0x01;
+//            Buff[7] = crc8(&Buff[3], 4);
+//            Buff[8] = 0x00;
+//            SmartAudio.length = 9;  //9
+//            break;
+//        
+//        case Set_Frequency_cmd:
+//            Buff[3] = 0x04;
+//            Buff[4] = 0x04;
+//            Buff[5] = (SmartAudio.Freq >> 8);
+//            Buff[6] = SmartAudio.Freq;
+//            Buff[7] = 0x01;
+//            Buff[8] = crc8(&Buff[3], 5);
+//            Buff[9] = 0x00;
+//            SmartAudio.length = 10;  //10
+//            break;
+//        
+//        case Set_Mode_cmd:
+//            Buff[3] = 0x05;
+//            Buff[4] = 0x03;
+//            Buff[5] = SmartAudio.Mode;
+//            Buff[6] = 0x01;
+//            Buff[7] = crc8(&Buff[3], 4);
+//            Buff[8] = 0x00;
+//            SmartAudio.length = 9;  //9
+//            break;
+//        
+//    }
+
+
+    Buff[0] = 0xAA;             //同步码
+    Buff[1] = 0x55;             //同步码
     
     switch (SmartAudio.Cmd)
     {
         case Get_Settings_cmd: 
-            Buff[3] = 0x09;
-            Buff[4] = 0x06;
-            Buff[5] = SmartAudio.Channel;
-            Buff[6] = SmartAudio.Power;
-            Buff[7] = 0x1A;
-            Buff[8] = (SmartAudio.Freq >> 8);
-            Buff[9] = SmartAudio.Freq;
-            Buff[10] = crc8(&Buff[3], 7);
-            Buff[11] = 0x00;
-            SmartAudio.length = 12;
+            Buff[2] = 0x09;
+            Buff[3] = 0x06;
+            Buff[4] = SmartAudio.Channel;
+            Buff[5] = SmartAudio.Power;
+            Buff[6] = 0x00;
+            Buff[7] = (SmartAudio.Freq >> 8);
+            Buff[8] = SmartAudio.Freq;
+            Buff[9] = crc8(&Buff[2], 7);
+            SmartAudio.length = 10; //12
             break;
+//            Buff[2] = 0x11;
+//            Buff[3] = 0x0C;
+//            Buff[4] = 0xFF;//SmartAudio.Channel;
+//            Buff[5] = 0X00;//SmartAudio.Power;
+//            Buff[6] = 0X10;//0x1A;
+//            Buff[7] = 0X13;//(SmartAudio.Freq >> 8);
+//            Buff[8] = 0X88;//SmartAudio.Freq;
+//            Buff[9] = 0X00;//crc8(&Buff[2], 7);
+//            Buff[10] = 0X05;
+//            Buff[11] = 0X00;
+//            Buff[12] = 0X01;
+//            Buff[13] = 0X0E;
+//            Buff[14] = 0X14;
+//            Buff[15] = 0X1A;
+//            Buff[16] = 0X19;
+//            SmartAudio.length = 17; //12
+//            break;
         
         case Set_Power_cmd:
-            Buff[3] = 0x02;
-            Buff[4] = 0x03;
-            Buff[5] = SmartAudio.Channel;
-            Buff[6] = SmartAudio.Power;
-            Buff[7] = 0x1;
-            Buff[8] = crc8(&Buff[3],5);
-            Buff[9] = 0x00;
-            SmartAudio.length = 10;
-            break;
+            Buff[2] = 0x02;
+            Buff[3] = 0x03;
+            Buff[4] = SmartAudio.Channel;
+            Buff[5] = SmartAudio.Power;
+            Buff[6] = 0x1;
+            Buff[7] = crc8(&Buff[2],5);
+            SmartAudio.length = 8;  //10
+            break; 
+//            Buff[2] = 0x02;
+//            Buff[3] = 0x02;
+//            Buff[4] = SmartAudio.Power;
+//            Buff[5] = 0x1;
+//            Buff[6] = crc8(&Buff[2],4);
+//            SmartAudio.length = 7;  //10
+//            break;
         
         case Set_Channel_cmd:
+            Buff[2] = 0x03;
             Buff[3] = 0x03;
-            Buff[4] = 0x03;
-            Buff[5] = SmartAudio.Channel;
-            Buff[6] = 0x01;
-            Buff[7] = crc8(&Buff[3], 4);
-            Buff[8] = 0x00;
-            SmartAudio.length = 9;
+            Buff[4] = SmartAudio.Channel;
+            Buff[5] = 0x01;
+            Buff[6] = crc8(&Buff[2], 4);
+            SmartAudio.length = 7;  //9
             break;
         
         case Set_Frequency_cmd:
+            Buff[2] = 0x04;
             Buff[3] = 0x04;
-            Buff[4] = 0x04;
-            Buff[5] = (SmartAudio.Freq >> 8);
-            Buff[6] = SmartAudio.Freq;
-            Buff[7] = 0x01;
-            Buff[8] = crc8(&Buff[3], 5);
-            Buff[9] = 0x00;
-            SmartAudio.length = 10;
+            Buff[4] = (SmartAudio.Freq >> 8);
+            Buff[5] = SmartAudio.Freq;
+            Buff[6] = 0x01;
+            Buff[7] = crc8(&Buff[2], 5);
+            SmartAudio.length = 8;  //10
+            send_flag = 0;
             break;
         
         case Set_Mode_cmd:
-            Buff[3] = 0x05;
-            Buff[4] = 0x03;
-            Buff[5] = SmartAudio.Mode;
-            Buff[6] = 0x01;
-            Buff[7] = crc8(&Buff[3], 4);
-            Buff[8] = 0x00;
-            SmartAudio.length = 9;
+            Buff[2] = 0x05;
+            Buff[3] = 0x03;
+            Buff[4] = SmartAudio.Mode;
+            Buff[5] = 0x01;
+            Buff[6] = crc8(&Buff[3], 4);
+            SmartAudio.length = 7;  //9
             break;
         
     }

@@ -4,7 +4,7 @@
 #include "gd32f130g_start.h"
 
 extern u16 length;
-extern u8 set_flag ;
+extern u8 send_flag ;
 		 				    
 #endif
 

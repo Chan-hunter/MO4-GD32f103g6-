@@ -203,12 +203,12 @@
         <Ww>
           <count>10</count>
           <WinNumber>1</WinNumber>
-          <ItemText>receiver_buffer0</ItemText>
+          <ItemText>receiver_buffer0,0x10</ItemText>
         </Ww>
         <Ww>
           <count>11</count>
           <WinNumber>1</WinNumber>
-          <ItemText>transmitter_buffer0</ItemText>
+          <ItemText>transmitter_buffer0,0x10</ItemText>
         </Ww>
         <Ww>
           <count>12</count>
@@ -224,6 +224,11 @@
           <count>14</count>
           <WinNumber>1</WinNumber>
           <ItemText>set_flag</ItemText>
+        </Ww>
+        <Ww>
+          <count>15</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>send_flag</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

@@ -57,7 +57,7 @@ OF SUCH DAMAGE.
 float Vpd=0,dB=20,set_Vpd;
 int dir=1,led0pwmval=0;
 float set_pwm;    
-u8 set_flag ;
+u8 send_flag ;  //1为发送  0为停止发送
 u16 length;
 
 
@@ -77,7 +77,7 @@ int main(void)
     RTC6705_WriteREG(0x00,400);
     SetFreq(5600);
     Vpd_ADC_Init();
-    TIM1_PWM_Init();
+//    TIM1_PWM_Init();
     TIM2_PWM_Init();
     UART0_Init();
     /* setup SysTick Timer for 1ms interrupts  */
@@ -87,20 +87,25 @@ int main(void)
     while(1){
         
         /*控制功率*/
-        set_Vpd=530;
+        set_Vpd=600;
         Vpd=(LimitFilter((get_adc_ch(1)),4096,0,200));//LimitFilter  filter  *3.3/4096
-        set_pwm = Constrain(pid_control(Vpd,set_Vpd,1.4+(set_Vpd/1000),0.07,0.5),1300,800);
+        set_pwm = Constrain(pid_control(Vpd,set_Vpd,1.4+(set_Vpd/1000),0.07,0.5),1300,100);
         timer_channel_output_pulse_value_config(TIMER2,TIMER_CH_1,set_pwm);
         
         /* SmartAudio通信 */
-      if(set_flag == 1)
+        if(send_flag == 1) 
       {
-        usart_transmit_config(USART0, USART_TRANSMIT_ENABLE); //开启发送
+//          usart_data_receive(USART0);
         usart0_data_send(transmitter_buffer0,SmartAudio.length);
         memset(receiver_buffer0,0,20);
         USART0_RestoreReceive();
-        set_flag = 0;
+//        memset(transmitter_buffer0,0,20);
+        send_flag = 0;
       }
+        
+//         usart_transmit_config(USART0, USART_TRANSMIT_ENABLE); //开启发送
+//         usart_data_transmit(USART0,transmitter_buffer0[0]);
+//        while(RESET == usart_flag_get(USART0, USART_FLAG_TBE));
         
     }
 }

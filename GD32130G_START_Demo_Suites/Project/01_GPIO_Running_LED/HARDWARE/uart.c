@@ -54,16 +54,10 @@ void UART0_Init(void)
     usart_interrupt_enable(USART0, USART_INT_RBNE);     //使能接收器非空中断
     
     /* USART0 transmit and receive*/
-//    usart_data_receive(USART0);
+    usart_data_receive(USART0);
     
 
   
-//           for(;i<Length;i++)
-//        {
-//            while(RESET == usart_flag_get(USART0, USART_FLAG_TBE));
-//            usart_data_transmit(USART0,buff[i]);
-//            Delay(0xff);
-//        }
 }
 
 
@@ -73,10 +67,12 @@ void USART0_StopReceive(void)
     usart_interrupt_disable(USART0, USART_INT_IDLE);        //禁止空闲中断
     usart_interrupt_disable(USART0, USART_INT_RBNE);        //禁止接收器非空中断
     usart_receive_config(USART0, USART_RECEIVE_DISABLE);    //停止接收
+    usart_transmit_config(USART0, USART_TRANSMIT_ENABLE);  //开启发送
 }
 
 void USART0_RestoreReceive(void)
 {
+    while(RESET == usart_flag_get(USART0, USART_FLAG_TC));    //等待发射完成
         /*开启接收行为*/
     usart_interrupt_enable(USART0, USART_INT_IDLE);        //开启空闲中断
     usart_interrupt_enable(USART0, USART_INT_RBNE);        //开启接收器非空中断
@@ -89,32 +85,25 @@ void usart0_data_send(uint8_t* Buff, uint16_t Length)
      u16 i=0;   
      u16 size;
     size = Length;
-//     while(size)
-//     {
-//       while(RESET == usart_flag_get(USART0, USART_FLAG_RBNE));
-//       usart_data_transmit(USART0,transmitter_buffer0[i++]);
-//       size--;
-//    }
-         for(;i<=size;i++)
-        {
-            usart_data_transmit(USART0,Buff[i]);
-            while(RESET == usart_flag_get(USART0, USART_FLAG_TBE));
-            
-//            Delay(0xf);
-        }
-        
-       
+     while(size--)
+     {
+         usart_data_transmit(USART0,Buff[i++]);
+         while(RESET == usart_flag_get(USART0, USART_FLAG_TBE));     //等待发送数据寄存器为空  
+    }
+//         for(;i<=size;i++)
+//        {
+//            usart_data_transmit(USART0,Buff[i]);
+//            while(RESET == usart_flag_get(USART0, USART_FLAG_TBE));
+//            
+////            Delay(0xf);
+//        }
         
 }
 
 void usart0_data_receive(void)
 {
-//     while(transfersize0--)
-//     {
-        while(RESET == usart_flag_get(USART0, USART_FLAG_RBNE));
-        /* store the received byte in the receiver_buffer1 */
-        receiver_buffer0[rxcount0++] = usart_data_receive(USART0);
-//     }
+     receiver_buffer0[rxcount0++] = usart_data_receive(USART0);
+     while(RESET == usart_flag_get(USART0, USART_FLAG_RBNE));   //等待接收数据寄存器不为空     
 }
 
 
@@ -144,7 +133,6 @@ void usart0_data_receive(void)
 	{
         usart_data_receive(USART0);
         usart_interrupt_flag_clear(USART0, USART_INT_FLAG_IDLE);    //清理空闲中断标志位
-//        LED_Open(LEDColor_Blue);                                    //蓝灯亮说明进入IDLE中断了
         SmartAudio_VTX_VerifyRx(receiver_buffer0,rxcount0);
         Delay(0xff);
         if( SmartAudio_VTX_VerifyRx(receiver_buffer0,rxcount0) == 1)
@@ -157,10 +145,9 @@ void usart0_data_receive(void)
         if(rxcount0 > 0)
         {
             USART0_StopReceive();           //停止接收
-            
-            set_flag = 1;
-//            USART0_BuffCtrl.FlagRC = 1;     //接收完成的标志置1
-//            LED_Open(LEDColor_Red);         //红灯亮说明收到数据了
+            while(RESET != usart_flag_get(USART0, USART_FLAG_RBNE));
+            Delay (0xffff);
+            send_flag = 1;
             rxcount0 = 0;
         }
 	}
