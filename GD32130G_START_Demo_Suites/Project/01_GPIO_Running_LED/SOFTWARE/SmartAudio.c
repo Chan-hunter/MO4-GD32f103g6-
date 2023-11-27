@@ -1,5 +1,7 @@
 #include "SmartAudio.h"
 #include "main.h"
+#include "RTC6705.h"
+
 
 
 
@@ -179,7 +181,7 @@ void SmartAudio_VTX_PckTx(uint8_t *Buff) //仅用V2版本
         
         case Set_Channel_cmd:
             Buff[2] = 0x03;
-            Buff[3] = 0x03;
+            Buff[3] = 0x02;
             Buff[4] = SmartAudio.Channel;
             Buff[5] = 0x01;
             Buff[6] = crc8(&Buff[2], 4);
@@ -194,7 +196,6 @@ void SmartAudio_VTX_PckTx(uint8_t *Buff) //仅用V2版本
             Buff[6] = 0x01;
             Buff[7] = crc8(&Buff[2], 5);
             SmartAudio.length = 8;  //10
-            send_flag = 0;
             break;
         
         case Set_Mode_cmd:
@@ -235,6 +236,8 @@ uint8_t SmartAudio_VTX_VerifyRx(uint8_t *Buff, uint8_t BuffLenth)
                 case Set_Channel_cmd:
                     SmartAudio.Channel =  Buff[5];
                     SmartAudio.Cmd = Set_Channel_cmd;
+                    SmartAudio.Freq = (VTX_Freq[SmartAudio.Channel]>> 8);
+                    SmartAudio.Freq = VTX_Freq[SmartAudio.Channel];
                     break;
                 
                 case Set_Frequency_cmd:

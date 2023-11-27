@@ -32,3 +32,8 @@
 .\output\smartaudio.o: ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_misc.h
 .\output\smartaudio.o: ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_tsi.h
 .\output\smartaudio.o: ..\..\01_GPIO_Running_LED\main.h
+.\output\smartaudio.o: ..\HARDWARE\RTC6705.h
+.\output\smartaudio.o: ..\HARDWARE\spi.h
+.\output\smartaudio.o: ..\..\01_GPIO_Running_LED\systick.h
+.\output\smartaudio.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\output\smartaudio.o: ..\SOFTWARE\delay.h

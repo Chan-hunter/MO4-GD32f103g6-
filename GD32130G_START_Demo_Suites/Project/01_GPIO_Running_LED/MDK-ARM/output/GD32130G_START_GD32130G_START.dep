@@ -94,7 +94,7 @@ I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd
 I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_tsi.h)(0x655183C1)
 I (..\systick.h)(0x655183C1)
 I (..\HARDWARE\led.h)(0x65518995)
-I (..\HARDWARE\RTC6705.h)(0x655C7D08)
+I (..\HARDWARE\RTC6705.h)(0x6563F59B)
 I (..\HARDWARE\spi.h)(0x655183C1)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
 I (..\SOFTWARE\delay.h)(0x655AB43B)
@@ -934,13 +934,13 @@ I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd
 I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_misc.h)(0x655183C1)
 I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_tsi.h)(0x655183C1)
 I (..\HARDWARE\pwm.h)(0x65547B2F)
-I (..\HARDWARE\RTC6705.h)(0x655C7D08)
+I (..\HARDWARE\RTC6705.h)(0x6563F59B)
 I (..\HARDWARE\spi.h)(0x655183C1)
 I (..\..\01_GPIO_Running_LED\systick.h)(0x655183C1)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
 I (..\SOFTWARE\delay.h)(0x655AB43B)
 F (..\HARDWARE\RTC6705.c)(0x655C7D08)(--c99 -c --cpu Cortex-M3 -g -O1 -Otime --apcs=interwork --split_sections -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include -I ..\..\01_GPIO_Running_LED -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS -I ..\..\..\Utilities -I ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include -I ..\HARDWARE -I ..\SOFTWARE-I.\RTE\_GD32130G_START-IC:\Users\hm\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\hm\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DGD32F1x0 -DGD32F130_150 -DUSE_STDPERIPH_DRIVER-o .\output\rtc6705.o --omf_browse .\output\rtc6705.crf --depend .\output\rtc6705.d)
-I (..\HARDWARE\RTC6705.h)(0x655C7D08)
+I (..\HARDWARE\RTC6705.h)(0x6563F59B)
 I (..\HARDWARE\spi.h)(0x655183C1)
 I (..\..\01_GPIO_Running_LED\systick.h)(0x655183C1)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5CEB79E2)
@@ -1108,7 +1108,7 @@ I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5CEB79D6)
 I (..\HARDWARE\adc.h)(0x65547B2F)
 I (..\..\..\Utilities\gd32f130g_start.h)(0x655183C1)
-F (..\SOFTWARE\SmartAudio.c)(0x656073B9)(--c99 -c --cpu Cortex-M3 -g -O1 -Otime --apcs=interwork --split_sections -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include -I ..\..\01_GPIO_Running_LED -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS -I ..\..\..\Utilities -I ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include -I ..\HARDWARE -I ..\SOFTWARE-I.\RTE\_GD32130G_START-IC:\Users\hm\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\hm\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DGD32F1x0 -DGD32F130_150 -DUSE_STDPERIPH_DRIVER-o .\output\smartaudio.o --omf_browse .\output\smartaudio.crf --depend .\output\smartaudio.d)
+F (..\SOFTWARE\SmartAudio.c)(0x6563FB42)(--c99 -c --cpu Cortex-M3 -g -O1 -Otime --apcs=interwork --split_sections -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include -I ..\..\01_GPIO_Running_LED -I ..\..\..\..\GD32F1x0_Firmware_Library\CMSIS -I ..\..\..\Utilities -I ..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include -I ..\HARDWARE -I ..\SOFTWARE-I.\RTE\_GD32130G_START-IC:\Users\hm\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include-IC:\Users\hm\AppData\Local\Arm\Packs\GigaDevice\GD32F1x0_DFP\3.2.1\Device\Include-D__UVISION_VERSION="528" -D_RTE_ -DGD32F1x0 -DGD32F130_150 -DUSE_STDPERIPH_DRIVER-o .\output\smartaudio.o --omf_browse .\output\smartaudio.crf --depend .\output\smartaudio.d)
 I (..\SOFTWARE\SmartAudio.h)(0x655B09D3)
 I (..\..\..\Utilities\gd32f130g_start.h)(0x655183C1)
 I (..\..\..\..\GD32F1x0_Firmware_Library\CMSIS\GD\GD32F1x0\Include\gd32f1x0.h)(0x655183C1)
@@ -1141,3 +1141,8 @@ I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd
 I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_misc.h)(0x655183C1)
 I (..\..\..\..\GD32F1x0_Firmware_Library\GD32F1x0_standard_peripheral\Include\gd32f1x0_tsi.h)(0x655183C1)
 I (..\..\01_GPIO_Running_LED\main.h)(0x655FFBEA)
+I (..\HARDWARE\RTC6705.h)(0x6563F59B)
+I (..\HARDWARE\spi.h)(0x655183C1)
+I (..\..\01_GPIO_Running_LED\systick.h)(0x655183C1)
+I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5CEB79E2)
+I (..\SOFTWARE\delay.h)(0x655AB43B)

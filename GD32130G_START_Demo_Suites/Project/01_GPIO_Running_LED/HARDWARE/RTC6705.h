@@ -15,7 +15,7 @@ void SetFreq(u32 freq);
 void RTC6705_WriteREG(u8 address,u32 data);
 void BIAS_Init(void);
 void PA_Init(void);
-//uint16_t const VTX_Freq[48];
+extern uint16_t const VTX_Freq[];
          
 #endif
 
