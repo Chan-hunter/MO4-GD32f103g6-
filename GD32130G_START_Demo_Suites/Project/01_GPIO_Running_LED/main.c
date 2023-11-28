@@ -82,16 +82,17 @@ int main(void)
     UART0_Init();
     /* setup SysTick Timer for 1ms interrupts  */
     systick_config();
-    set_Vpd=530;  //14dbm:610 20dbm:1005  24dbm:1420    26dbm:1680
+    set_Vpd=530;  //14dbm:478 20dbm:780  24dbm:1090    26dbm:1300
 
     while(1){
         
         /*控制功率*/
-        set_Vpd=600;
-        Vpd=(LimitFilter((get_adc_ch(1)),4096,0,200));//LimitFilter  filter  *3.3/4096
+//        set_Vpd=600;
+//        Vpd=(LimitFilter((get_adc_ch(1)),4096,0,200));//LimitFilter  filter  *3.3/4096
+        Vpd=get_adc_ch(1);//LimitFilter  filter  *3.3/4096
         set_pwm = Constrain(pid_control(Vpd,set_Vpd,1.4+(set_Vpd/1000),0.07,0.5),1300,100);
         timer_channel_output_pulse_value_config(TIMER2,TIMER_CH_1,set_pwm);
-        
+//        
         /* SmartAudio通信 */
         if(send_flag == 1) 
       {

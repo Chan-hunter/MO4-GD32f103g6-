@@ -208,7 +208,7 @@ void SmartAudio_VTX_PckTx(uint8_t *Buff) //仅用V2版本
             break;
         
     }
-      
+       
 }
 
 
@@ -251,6 +251,26 @@ uint8_t SmartAudio_VTX_VerifyRx(uint8_t *Buff, uint8_t BuffLenth)
                     SmartAudio.Cmd = Set_Mode_cmd;
                     break;
             }
+                RTC6705_WriteREG(0x0F,0000);
+                RTC6705_WriteREG(0x00,400);
+                SetFreq(SmartAudio.Freq);
+                
+                 switch(SmartAudio.Power)//14dbm:478 20dbm:780  24dbm:1090    26dbm:1300
+                 {
+                     case 0:
+                         set_Vpd = 478;
+                        break;
+                     case 1:
+                         set_Vpd = 780;
+                        break;
+                     case 2:
+                         set_Vpd = 1090;
+                        break;
+                     case 3:
+                         set_Vpd = 1300;
+                        break;         
+                     
+                 }  
             return 1;
         }
         else return 0;
